@@ -36,6 +36,25 @@ function swatches16(){
   '<button type="button" class="color-btn" data-color="negro" data-img="https://d1storeperu.github.io/d1-store/public/phones/16-black.png" title="Black"></button>'+
   '</div></div>';
 }
+function swatches15(){
+  return '<div class="color-row"><span class="color-label">Color</span><div class="color-swatches">'+
+  '<button type="button" class="color-btn active" data-color="negro" data-img="https://d1storeperu.github.io/d1-store/public/phones/15-black.png" title="Black"></button>'+
+  '<button type="button" class="color-btn" data-color="azul" data-img="https://d1storeperu.github.io/d1-store/public/phones/15-blue.png" title="Blue"></button>'+
+  '<button type="button" class="color-btn" data-color="rosa" data-img="https://d1storeperu.github.io/d1-store/public/phones/15-pink.png" title="Pink"></button>'+
+  '</div></div>';
+}
+function swatches15Pro(){
+  return '<div class="color-row"><span class="color-label">Color</span><div class="color-swatches">'+
+  '<button type="button" class="color-btn active" data-color="natural" data-img="https://d1storeperu.github.io/d1-store/public/phones/16-pro-natural.png" title="Natural Titanium"></button>'+
+  '<button type="button" class="color-btn" data-color="desert" data-img="https://d1storeperu.github.io/d1-store/public/phones/16-pro-desert.png" title="Desert Titanium"></button>'+
+  '</div></div>';
+}
+function swatches15ProMax(){
+  return '<div class="color-row"><span class="color-label">Color</span><div class="color-swatches">'+
+  '<button type="button" class="color-btn active" data-color="negro" data-img="https://d1storeperu.github.io/d1-store/public/phones/16-pro-max-black.png" title="Black Titanium"></button>'+
+  '<button type="button" class="color-btn" data-color="desert" data-img="https://d1storeperu.github.io/d1-store/public/phones/16-pro-max-desert.png" title="Desert Titanium"></button>'+
+  '</div></div>';
+}
 function cardPM(gb,p,e,id){
   var idAttr=id?' id="'+id+'"':'';
   return '<article class="product-card reveal promx-card" data-gen="18" data-base-pedido="'+p+'" data-base-entrega="'+e+'" data-gb="'+gb+'" data-model="iPhone 18 Pro Max"'+idAttr+'>'+
@@ -84,9 +103,9 @@ cards+=card17Color('iPhone 17 Pro Max','17-pro-max',4999,4799,4499);
 cards+=cardColor('16','iPhone 16','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-ultramarine.png','Ultramarine',swatches16(),2899,2799,2499);
 cards+=cardSimple('16','iPhone 16 Pro','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-desert.png',3799,3599,3399);
 cards+=cardSimple('16','iPhone 16 Pro Max','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-max-black.png',4299,4099,3899);
-cards+=cardSimple('15','iPhone 15','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/15-black.png',2599,2399,2099);
-cards+=cardSimple('15','iPhone 15 Pro','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-natural.png',3299,3099,2899);
-cards+=cardSimple('15','iPhone 15 Pro Max','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-max-black.png',3799,3599,3299);
+cards+=cardColor('15','iPhone 15','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/15-black.png','Black',swatches15(),2599,2399,2099);
+cards+=cardColor('15','iPhone 15 Pro','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-natural.png','Natural Titanium',swatches15Pro(),3299,3099,2899);
+cards+=cardColor('15','iPhone 15 Pro Max','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-max-black.png','Black Titanium',swatches15ProMax(),3799,3599,3299);
 
 var bodyHtml=
 '<section class="gallery" id="promos"><div class="gallery-track" id="galleryTrack">'+
@@ -164,8 +183,9 @@ function inject(){
     if(next)next.addEventListener('click',function(){go(i+1)});
     setInterval(function(){go(i+1)},4500);
   }
-  var colorNames={plata:'Blanco',negro:'Negro',glaciar:'Gris glaciar',borgona:'Borgoña',azul:'Deep Blue',naranja:'Cosmic Orange',blanco:'White',lavender:'Lavender',mistblue:'Mist Blue',sage:'Sage',ultramarine:'Ultramarine',teal:'Teal',rosa:'Pink'};
+  var colorNames={plata:'Blanco',negro:'Negro',glaciar:'Gris glaciar',borgona:'Borgoña',azul:'Deep Blue',naranja:'Cosmic Orange',blanco:'White',lavender:'Lavender',mistblue:'Mist Blue',sage:'Sage',ultramarine:'Ultramarine',teal:'Teal',rosa:'Pink',natural:'Natural Titanium',desert:'Desert Titanium'};
   var colorNames17={azul:'Deep Blue',naranja:'Cosmic Orange',plata:'Silver'};
+  var colorNames15={negro:'Black',azul:'Blue',rosa:'Pink',natural:'Natural Titanium',desert:'Desert Titanium'};
   document.querySelectorAll('.promx-card').forEach(function(card){
     var baseP=+card.dataset.basePedido, baseE=+card.dataset.baseEntrega, gb=card.dataset.gb, model=card.dataset.model||'iPhone 18 Pro Max';
     card.querySelectorAll('.color-btn').forEach(function(btn){
@@ -187,7 +207,7 @@ function inject(){
         card.querySelectorAll('.color-btn').forEach(function(b){b.classList.remove('active')});
         btn.classList.add('active');
         var color=btn.dataset.color, img=btn.dataset.img;
-        var name=colorNames17[color]||colorNames[color]||color;
+        var name=colorNames17[color]||colorNames15[color]||colorNames[color]||color;
         var cn=card.querySelector('.color-name');if(cn)cn.textContent=name;
         if(img){var im=card.querySelector('.pm-img');if(im)im.src=img}
         var wa=card.querySelector('.pm-wa');
