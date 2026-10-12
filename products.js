@@ -11,6 +11,13 @@ function swatches(){
   '<button type="button" class="color-btn" data-color="borgona" data-extra="300" data-img="https://d1storeperu.github.io/d1-store/public/phones/18-pro-max-burgundy.png" title="Borgoña"></button>'+
   '</div></div>';
 }
+function swatches17(prefix){
+  return '<div class="color-row"><span class="color-label">Color</span><div class="color-swatches">'+
+  '<button type="button" class="color-btn active" data-color="azul" data-img="https://d1storeperu.github.io/d1-store/public/phones/'+prefix+'-blue.png" title="Deep Blue"></button>'+
+  '<button type="button" class="color-btn" data-color="naranja" data-img="https://d1storeperu.github.io/d1-store/public/phones/'+prefix+'-orange.png" title="Cosmic Orange"></button>'+
+  '<button type="button" class="color-btn" data-color="plata" data-img="https://d1storeperu.github.io/d1-store/public/phones/'+prefix+'-silver.png" title="Silver"></button>'+
+  '</div></div>';
+}
 function cardPM(gb,p,e,id){
   var idAttr=id?' id="'+id+'"':'';
   return '<article class="product-card reveal promx-card" data-gen="18" data-base-pedido="'+p+'" data-base-entrega="'+e+'" data-gb="'+gb+'" data-model="iPhone 18 Pro Max"'+idAttr+'>'+
@@ -21,6 +28,13 @@ function cardPM(gb,p,e,id){
 }
 function cardDuo(gb,p,e){
   return '<article class="product-card reveal" data-gen="18"><div class="product-img"><span class="product-badge">Preventa</span><img src="https://litter.catbox.moe/0k2ibq.jpg" alt="iPhone Dúo"></div><div class="product-body"><h3>iPhone Dúo</h3><p class="product-spec">'+gb+' · Entregas desde 25 oct</p><div class="product-prices"><div class="price-main"><div class="label">Preventa</div><div class="amount">'+fmt(p)+'</div></div><div class="price-alt">Contra entrega<strong>'+fmt(e)+'</strong></div></div><a href="https://wa.me/51997610401?text='+encodeURIComponent('Hola, quiero iPhone Dúo '+gb)+'" class="btn btn-white btn-block" target="_blank" rel="noopener">Reservar</a></div></article>';
+}
+function card17Color(name,prefix,unit,p3,p10){
+  return '<article class="product-card reveal color-card" data-gen="17" data-model="'+name+'">'+
+  '<div class="product-img"><span class="product-badge">Nuevo</span><img class="pm-img" src="https://d1storeperu.github.io/d1-store/public/phones/'+prefix+'-blue.png" alt="'+name+'"></div>'+
+  '<div class="product-body"><h3>'+name+'</h3><p class="product-spec">256 GB eSIM · <span class="color-name">Deep Blue</span></p>'+swatches17(prefix)+
+  '<div class="product-prices"><div class="price-main"><div class="label">Unidad</div><div class="amount">'+fmt(unit)+'</div></div><div class="price-alt">+3: '+fmt(p3)+'<br>+10: '+fmt(p10)+'</div></div>'+
+  '<a href="https://wa.me/51997610401?text='+encodeURIComponent('Hola, quiero '+name+' 256 GB Deep Blue')+'" class="btn btn-white btn-block pm-wa" target="_blank" rel="noopener">Comprar</a></div></article>';
 }
 function cardSimple(gen,name,spec,img,unit,p3,p10,badge){
   var b=badge?'<span class="product-badge">'+badge+'</span>':'';
@@ -39,8 +53,8 @@ cards+=cardDuo('512 GB',8990,9699);
 cards+=cardDuo('1 TB',10390,11290);
 cards+=cardDuo('2 TB',12390,13190);
 cards+=cardSimple('17','iPhone 17','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/17-black.png',3699,3599,3299,'Nuevo');
-cards+=cardSimple('17','iPhone 17 Pro','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/17-pro-blue.png',4499,4299,4099,'Nuevo');
-cards+=cardSimple('17','iPhone 17 Pro Max','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/17-pro-max-blue.png',4999,4799,4499,'Nuevo');
+cards+=card17Color('iPhone 17 Pro','17-pro',4499,4299,4099);
+cards+=card17Color('iPhone 17 Pro Max','17-pro-max',4999,4799,4499);
 cards+=cardSimple('16','iPhone 16','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-ultramarine.png',2899,2799,2499);
 cards+=cardSimple('16','iPhone 16 Pro','128 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-desert.png',3799,3599,3399);
 cards+=cardSimple('16','iPhone 16 Pro Max','256 GB eSIM','https://d1storeperu.github.io/d1-store/public/phones/16-pro-max-black.png',4299,4099,3899);
@@ -81,7 +95,7 @@ var bodyHtml=
 '<th><span class="color-dot" style="background:linear-gradient(145deg,#8b3a4a,#4a1520)"></span>Borgoña</th>'+
 '</tr></thead><tbody>'+
 '<tr><td><strong>256 GB</strong><br><span class="muted">A pedido / Contra entrega</span></td><td class="num">S/ 6,599<br><span class="muted">S/ 6,999</span></td><td class="num">S/ 6,699<br><span class="muted">S/ 7,099</span></td><td class="num">S/ 6,799<br><span class="muted">S/ 7,199</span></td><td class="num">S/ 6,899<br><span class="muted">S/ 7,299</span></td></tr>'+
-'<tr><td><strong>512 GB</strong><br><span class="muted">A pedido / Contra entrega</span></td><td class="num">S/ 7,399<br><span class="muted">S/ 7,699</span></td><td class="num">S/ 7,499<br><span class="muted">S/ 7,799</span></td><td class="num">S/ 7,599<br><span class="muted">S/ 7,899</span></td><td class="num">S/ 7,699<br><span class="muted">S/ 7,999</span></td></tr>'+
+'<tr><td><strong>512 GB</strong><br><span class="muted">A pedido / Contra entrega</span></td><td class="num">S/ 7,399<br><span class="muted">S/ 7,699</span></td><td class="num">S/ 7,499<br><span class="muted">S/ 7,799</span></td><td class="num">S/ 7,599<br><span class="muted">S/ 7,999</span></td><td class="num">S/ 7,699<br><span class="muted">S/ 7,999</span></td></tr>'+
 '<tr><td><strong>1 TB</strong><br><span class="muted">A pedido / Contra entrega</span></td><td class="num">S/ 7,999<br><span class="muted">S/ 8,599</span></td><td class="num">S/ 8,099<br><span class="muted">S/ 8,699</span></td><td class="num">S/ 8,199<br><span class="muted">S/ 8,799</span></td><td class="num">S/ 8,299<br><span class="muted">S/ 8,899</span></td></tr>'+
 '<tr><td><strong>2 TB</strong><br><span class="muted">A pedido / Contra entrega</span></td><td class="num">S/ 9,490<br><span class="muted">S/ 9,999</span></td><td class="num">S/ 9,590<br><span class="muted">S/ 10,099</span></td><td class="num">S/ 9,690<br><span class="muted">S/ 10,199</span></td><td class="num">S/ 9,790<br><span class="muted">S/ 10,299</span></td></tr>'+
 '</tbody></table></div></section>'+
@@ -124,7 +138,8 @@ function inject(){
     if(next)next.addEventListener('click',function(){go(i+1)});
     setInterval(function(){go(i+1)},4500);
   }
-  var colorNames={plata:'Blanco',negro:'Negro',glaciar:'Gris glaciar',borgona:'Borgoña'};
+  var colorNames={plata:'Blanco',negro:'Negro',glaciar:'Gris glaciar',borgona:'Borgoña',azul:'Deep Blue',naranja:'Cosmic Orange'};
+  var colorNames17={azul:'Deep Blue',naranja:'Cosmic Orange',plata:'Silver'};
   document.querySelectorAll('.promx-card').forEach(function(card){
     var baseP=+card.dataset.basePedido, baseE=+card.dataset.baseEntrega, gb=card.dataset.gb, model=card.dataset.model||'iPhone 18 Pro Max';
     card.querySelectorAll('.color-btn').forEach(function(btn){
@@ -136,6 +151,19 @@ function inject(){
         var cn=card.querySelector('.color-name');if(cn)cn.textContent=colorNames[color]||color;
         if(img){var im=card.querySelector('.pm-img');if(im)im.src=img}
         var wa=card.querySelector('.pm-wa');if(wa)wa.href='https://wa.me/51997610401?text='+encodeURIComponent('Hola, quiero '+model+' '+gb+' '+(colorNames[color]||color));
+      });
+    });
+  });
+  document.querySelectorAll('.color-card').forEach(function(card){
+    var model=card.dataset.model||'iPhone 17 Pro';
+    card.querySelectorAll('.color-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        card.querySelectorAll('.color-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        var color=btn.dataset.color, img=btn.dataset.img;
+        var cn=card.querySelector('.color-name');if(cn)cn.textContent=colorNames17[color]||color;
+        if(img){var im=card.querySelector('.pm-img');if(im)im.src=img}
+        var wa=card.querySelector('.pm-wa');if(wa)wa.href='https://wa.me/51997610401?text='+encodeURIComponent('Hola, quiero '+model+' 256 GB '+(colorNames17[color]||color));
       });
     });
   });
